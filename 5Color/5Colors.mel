@@ -1,0 +1,37 @@
+
+global proc rig_createColor()
+{
+	// Pink
+	// string $pink = `createNode lambert`;
+	// string $pink = `shadingNode -asShader $stype -n MainChannel`;
+	// setAttr ($pink + ".color") 0.8 0.6 0.6;
+	// rename $pink "A_pink";
+
+	string $matName = "A_Red"
+	string $pink = `shadingNode -asShader lambert -name $matName`;
+	connectAttr -f ($matName + ".outColor") ($matName + "SG.surfaceShader");
+
+
+	// shadingNode -asShader lambert -name "A_Red";
+	// sets -renderable true -noSurfaceShader true -empty -name A_RedSG;
+	// connectAttr -f A_Red.outColor A_RedSG.surfaceShader;
+
+
+
+	// // Blue
+	// string $blue = `createNode lambert`;
+	// setAttr ($blue + ".color") 0 0.6 0.7;
+	// rename $blue "A_blue";
+
+	// // Green
+	// string $green = `createNode lambert`;
+	// setAttr ($green + ".color") 0 0.7 0.3;
+	// rename $green "A_green";
+
+	// // Yellow
+	// string $yellow = `createNode lambert`;
+	// setAttr ($yellow + ".color") 0.9 0.75 0;
+	// rename $yellow "A_yellow";
+}
+
+rig_createColor();
