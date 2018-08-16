@@ -1,57 +1,43 @@
 
-global proc rig_createColor()
+global proc rig_createColors(string $matName, float $matColor[] )
 {
-	// Pink
-	string $matName = "A_pink";
-	float $matColor[] = {0.8, 0.6, 0.6} ;
 
 	// Create Material if not exist
 	if (! `objExists $matName`) 
 	{
 		string $pink = `shadingNode -asShader lambert -name $matName`;
-		sets -renderable true -noSurfaceShader true -empty -name ($matName + "SG");
+			// Check if Shader Exist
+				if (! `objExists ($matName + "SG.surfaceShader")`) 
+				{
+					sets -renderable true -noSurfaceShader true -empty -name ($matName + "SG");					
+				}
 		connectAttr -f ($matName + ".outColor") ($matName + "SG.surfaceShader");
 		setAttr ($pink + ".color") $matColor[0] $matColor[1] $matColor[2];
 	}
 
-	// Blue
-	string $matName = "A_blue";
-	float $matColor[] = {0.0, 0.6, 0.7} ;
-
-	// Create Material if not exist
-	if (! `objExists $matName`) 
-	{
-		string $pink = `shadingNode -asShader lambert -name $matName`;
-		sets -renderable true -noSurfaceShader true -empty -name ($matName + "SG");
-		connectAttr -f ($matName + ".outColor") ($matName + "SG.surfaceShader");
-		setAttr ($pink + ".color") $matColor[0] $matColor[1] $matColor[2];
-	}
-
-	// Green
-	string $matName = "A_green";
-	float $matColor[] = {0.0, 0.7, 0.3} ;
-
-	// Create Material if not exist
-	if (! `objExists $matName`) 
-	{
-		string $pink = `shadingNode -asShader lambert -name $matName`;
-		sets -renderable true -noSurfaceShader true -empty -name ($matName + "SG");
-		connectAttr -f ($matName + ".outColor") ($matName + "SG.surfaceShader");
-		setAttr ($pink + ".color") $matColor[0] $matColor[1] $matColor[2];
-	}
-
-	// // Yellow
-	string $matName = "A_yellow";
-	float $matColor[] = {0.9, 0.75, 0.3} ;
-
-	// Create Material if not exist
-	if (! `objExists $matName`) 
-	{
-		string $pink = `shadingNode -asShader lambert -name $matName`;
-		sets -renderable true -noSurfaceShader true -empty -name ($matName + "SG");
-		connectAttr -f ($matName + ".outColor") ($matName + "SG.surfaceShader");
-		setAttr ($pink + ".color") $matColor[0] $matColor[1] $matColor[2];
-	}
 }
 
-rig_createColor();
+// Pink
+string $matName = "A_pink";
+float $matColor[] = {0.8, 0.6, 0.6} ;
+rig_createColors($matName, $matColor);
+
+// Blue
+string $matName = "A_blue";
+float $matColor[] = {0.0, 0.6, 0.7} ;
+rig_createColors($matName, $matColor);
+
+// Green
+string $matName = "A_green";
+float $matColor[] = {0.0, 0.7, 0.3} ;
+rig_createColors($matName, $matColor);
+
+// Yellow
+string $matName = "A_yellow";
+float $matColor[] = {0.9, 0.75, 0.3} ;
+rig_createColors($matName, $matColor);
+
+// Purple
+string $matName = "A_purple";
+float $matColor[] = {0.75, 0.3, 0.9} ;
+rig_createColors($matName, $matColor);
