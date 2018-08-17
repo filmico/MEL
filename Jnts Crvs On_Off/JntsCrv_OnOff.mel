@@ -1,0 +1,52 @@
+// Turn On - Off JNTS
+string $currentPanel = `getPanel -wf`;
+string $modelPanelName = "";
+
+string $allPanels[] = `getPanel -all`;
+
+for ($i = 0; $i <= size($allPanels); $i++) { 
+
+    // find modelPanel
+    if (`size($allPanels[$i])` >=10){
+        $modelPanelName = `substring $allPanels[$i] 1 10`;
+        if ($modelPanelName == "modelPanel"){
+
+            // Turn on - Off Thing!            
+            // print ($allPanels[$i] + "\n"); 
+  
+            if(`modelEditor -q -joints $allPanels[$i]` == 0) {    
+                modelEditor -e -joints true $allPanels[$i];
+            }
+            else {    
+                modelEditor -e -joints false $allPanels[$i];
+            } 
+        }           
+    }
+} 
+
+
+// Turn On - Off Curves
+string $currentPanel = `getPanel -wf`;
+string $modelPanelName = "";
+
+string $allPanels[] = `getPanel -all`;
+
+for ($i = 0; $i <= size($allPanels); $i++) { 
+
+    // find modelPanel
+    if (`size($allPanels[$i])` >=10){
+        $modelPanelName = `substring $allPanels[$i] 1 10`;
+        if ($modelPanelName == "modelPanel"){
+
+            // Turn on - Off Thing!            
+            // print ($allPanels[$i] + "\n"); 
+  
+            if(`modelEditor -q -nurbsCurves $allPanels[$i]` == 0) {    
+                modelEditor -e -nurbsCurves true $allPanels[$i];
+            }
+            else {    
+                modelEditor -e -nurbsCurves false $allPanels[$i];
+            } 
+        }           
+    }
+} 
